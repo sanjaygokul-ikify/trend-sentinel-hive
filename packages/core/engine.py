@@ -32,7 +32,7 @@ class Engine:
 
     def execute_policy(self, policy: Policy):
         compiled_policy = self.policy_compiler.compile(policy)
-        tasks = compiled_policy.get_tasks()
+        tasks = compiled_policy
         for task in tasks:
             self.dispatch_task(task)
 
