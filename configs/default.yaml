@@ -1,0 +1,14 @@
+system:
+  max_concurrent_tasks: 50
+  policy_refresh_rate: 15s
+agents:
+  code_analyzer:
+    enabled: true
+    max_depth: 3
+  security_context:
+    retention_period: 7d
+execution:
+  sandboxed: true
+  resource_limits:
+    memory: 512Mi
+    cpu: 1000m
