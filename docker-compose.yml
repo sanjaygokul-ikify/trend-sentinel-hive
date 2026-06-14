@@ -1,0 +1,16 @@
+services:
+  sentinel-core:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/sentinel/data
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: sentinel
+      POSTGRES_PASSWORD: secure_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
