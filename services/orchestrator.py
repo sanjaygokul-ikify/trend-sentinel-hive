@@ -8,8 +8,9 @@ class Orchestrator:
 
     def execute_policy(self, policy_name: str):
         try:
-            policy = self.engine.policy_compiler.compile(policy_name)
-            self.engine.execute_policy(policy)
+            policy = Policy(policy_name, []) # Initialize policy with empty rules
+            compiled_policy = self.engine.policy_compiler.compile(policy)
+            self.engine.execute_policy(compiled_policy)
         except PolicyCompilationError as e:
             self.logger.error(f"Failed to compile policy: {e}")
             raise
