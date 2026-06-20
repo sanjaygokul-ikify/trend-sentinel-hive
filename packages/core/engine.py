@@ -31,10 +31,13 @@ class Engine:
             return False
 
     def execute_policy(self, policy: Policy):
-        compiled_policy = self.policy_compiler.compile(policy)
-        tasks = compiled_policy
-        for task in tasks:
-            self.dispatch_task(task)
+        try:
+            compiled_policy = self.policy_compiler.compile(policy)
+            tasks = compiled_policy
+            for task in tasks:
+                self.dispatch_task(task)
+        except Exception as e:
+            self.logger.error(f"Failed to execute policy: {e}")
 
     def get_status(self):
         status = {}
