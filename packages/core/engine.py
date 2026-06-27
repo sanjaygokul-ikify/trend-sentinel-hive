@@ -35,7 +35,8 @@ class Engine:
             compiled_policy = self.policy_compiler.compile(policy)
             tasks = compiled_policy
             for task in tasks:
-                self.dispatch_task(task)
+                if not self.dispatch_task(task):
+                    self.logger.error(f"Failed to dispatch task: {task.get_action()} {task.get_condition()}")
         except Exception as e:
             self.logger.error(f"Failed to execute policy: {e}")
 
